@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<config>
+    <ignorecase>false</ignorecase>
+    <threadcount>20</threadcount>
+    <replacepair>
+        <pair>
+            <left>com.backend</left>
+            <right>com.backend1</right>
+        </pair>
+        <pair>
+            <left>com.utils</left>
+            <right>com.utils2</right>
+        </pair>
+    </replacepair>
+
+    <inputdir>
+        <dir>C:\\Users\\tyanq\\Desktop\\jAlbum\\</dir>
+    </inputdir>
+    
+    <filesuffix>
+        <suffix>java</suffix>
+    </filesuffix>     
+</config>
