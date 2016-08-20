@@ -4,12 +4,12 @@
     <threadcount>20</threadcount>
     <replacepair>
         <pair>
-            <left>com.33backend</left>
-            <right>com.backend</right>
+            <left>com.backend</left>
+            <right>com.33backend</right>
         </pair>
         <pair>
-            <left>com.33utils</left>
-            <right>com.utils</right>
+            <left>com.utils</left>
+            <right>com.33utils</right>
         </pair>
     </replacepair>
 
