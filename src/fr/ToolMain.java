@@ -31,6 +31,25 @@ public class ToolMain
             System.out.println("error configuration!");
             return;
         }
+        System.out.println("folders: " + indirs);
+        System.out.println("file types: " + filesufixs);
+        System.out.println("new file style: " + (dos ? "dos" : "unix"));
+        System.err.print("即将按照如上规则和指定目录替换所有文件中的符合要求的内容，确认继续吗？(y or n): ");
+
+        try
+        {
+            char c = (char) System.in.read();
+            if (c != 'y' && c != 'Y')
+            {
+                System.out.println("Canceled!");
+                return;
+            }
+        }
+        catch (IOException e1)
+        {
+            e1.printStackTrace();
+            return;
+        }
 
         for (String fpath : indirs)
         {
