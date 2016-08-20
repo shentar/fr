@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project fr">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="F:/workdir"/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/fr.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="fr.ToolMain"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/commons-configuration-1.10.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/commons-lang-2.6.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/commons-logging-1.1.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/commons-collections-3.2.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/commons-io-2.5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/commons-pool-1.5.5.jar"/>
+        </jar>
+    </target>
+</project>

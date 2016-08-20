@@ -70,9 +70,13 @@ public class CheckFileTask implements Runnable
                 return;
             }
 
+            System.out.println("File: " + f.getCanonicalPath());
             for (Entry<Integer, String> cl : changed.entrySet())
             {
+                System.out.println("Line: " + cl.getKey() + " Content: " + lines.get(cl.getKey()));
                 lines.put(cl.getKey(), cl.getValue());
+                System.out.println("New Content: " + cl.getValue());
+
             }
 
             File tmp = new File(f.getCanonicalPath() + "tmpnow");
