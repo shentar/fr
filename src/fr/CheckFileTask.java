@@ -8,9 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class CheckFileTask implements Runnable
 {
@@ -33,9 +35,10 @@ public class CheckFileTask implements Runnable
         BufferedWriter of = null;
         try
         {
-            bf = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+            bf = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8));
 
-            Map<Integer, String> lines = new HashMap<Integer, String>();
+            Map<Integer, String> lines = new TreeMap<Integer, String>();
             int i = 0;
             while (true)
             {
@@ -49,7 +52,7 @@ public class CheckFileTask implements Runnable
                 lines.put(i, line);
             }
 
-            Map<Integer, String> changed = new HashMap<Integer, String>();
+            Map<Integer, String> changed = new TreeMap<Integer, String>();
             for (Entry<Integer, String> l : lines.entrySet())
             {
                 for (ReplacePair rp : ToolMain.getLr())
@@ -70,13 +73,17 @@ public class CheckFileTask implements Runnable
                 return;
             }
 
-            System.out.println("File: " + f.getCanonicalPath());
-            for (Entry<Integer, String> cl : changed.entrySet())
+            synchronized (System.out)
             {
-                System.out.println("Line: " + cl.getKey() + " Content: " + lines.get(cl.getKey()));
-                lines.put(cl.getKey(), cl.getValue());
-                System.out.println("New Content: " + cl.getValue());
+                System.out.println("File: " + f.getCanonicalPath());
+                for (Entry<Integer, String> cl : changed.entrySet())
+                {
+                    System.out.print(
+                            "Line: " + cl.getKey() + " Content: " + lines.get(cl.getKey()));
+                    lines.put(cl.getKey(), cl.getValue());
+                    System.out.println(" New Content: " + cl.getValue());
 
+                }
             }
 
             File tmp = new File(f.getCanonicalPath() + "tmpnow");
@@ -89,7 +96,8 @@ public class CheckFileTask implements Runnable
                 }
             }
 
-            of = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tmp)));
+            of = new BufferedWriter(
+                    new OutputStreamWriter(new FileOutputStream(tmp), StandardCharsets.UTF_8));
 
             for (Entry<Integer, String> l : lines.entrySet())
             {
