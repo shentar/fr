@@ -20,4 +20,5 @@
     <filesuffix>
         <suffix>java</suffix>
     </filesuffix>     
+    <unixstyle>unix</unixstyle>
 </config>

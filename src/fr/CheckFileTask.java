@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -78,8 +77,8 @@ public class CheckFileTask implements Runnable
                 System.out.println("File: " + f.getCanonicalPath());
                 for (Entry<Integer, String> cl : changed.entrySet())
                 {
-                    System.out.print(
-                            "Line: " + cl.getKey() + " Content: " + lines.get(cl.getKey()));
+                    System.out
+                            .print("Line: " + cl.getKey() + " Content: " + lines.get(cl.getKey()));
                     lines.put(cl.getKey(), cl.getValue());
                     System.out.println(" New Content: " + cl.getValue());
 
@@ -99,9 +98,10 @@ public class CheckFileTask implements Runnable
             of = new BufferedWriter(
                     new OutputStreamWriter(new FileOutputStream(tmp), StandardCharsets.UTF_8));
 
+            String rn = ToolMain.isDos() ? "\r\n" : "\n";
             for (Entry<Integer, String> l : lines.entrySet())
             {
-                of.write(l.getValue() + "\n");
+                of.write(l.getValue() + rn);
             }
 
             of.close();

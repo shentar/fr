@@ -138,4 +138,9 @@ public class AppConfig
 
         return dirLst;
     }
+
+    public boolean isDos()
+    {
+        return "dos".equalsIgnoreCase(config.getString("unixstyle"));
+    }
 }

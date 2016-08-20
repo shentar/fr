@@ -22,6 +22,8 @@ public class ToolMain
 
     private static List<String> indirs = AppConfig.getInstance().getInputDir();
 
+    private static boolean dos = AppConfig.getInstance().isDos();
+
     public static void main(String args[])
     {
         if (lr == null || lr.isEmpty() || indirs.isEmpty())
@@ -173,6 +175,16 @@ public class ToolMain
     public static void setIndirs(List<String> indirs)
     {
         ToolMain.indirs = indirs;
+    }
+
+    public static boolean isDos()
+    {
+        return dos;
+    }
+
+    public static void setDos(boolean d)
+    {
+        ToolMain.dos = d;
     }
 
 }
